@@ -1,10 +1,10 @@
-package com.mkyong.customer.action;
+
 
 import junit.framework.TestCase;
 
-import org.junit.After;
 import org.junit.Test;
 
+import com.mkyong.customer.action.CustomerAction;
 import com.mkyong.customer.model.Customer;
 
 public class CustomerActionTest extends TestCase {
@@ -20,15 +20,16 @@ public class CustomerActionTest extends TestCase {
 		customer.setAddress("yyyy");
 		action.addCustomer(customer);
 		assertNotNull(customer.getCustomerId());
-		
-		String result=action.deleteCustomer(customer);
-		assertEquals(result,"success");
 	}
 
 	@Test
+	public void testDeleteCustomer()throws Exception{
+		action.deleteCustomer(customer);
+		assertNull(customer.getCustomerId());
+	}
+	
 	public void testListCustomer() throws Exception {
 		String result=action.listCustomer();
 		assertEquals(result, "success");
 	}
-	
 }
