@@ -82,7 +82,7 @@ public class CustomerAction extends ActionSupport
 		customerList = session.createQuery("from Customer").list();
 		}catch(Exception e){
 			e.printStackTrace();
-			return ERROR;
+			throw new RuntimeException(e);
 		}
 		
 		return SUCCESS;
