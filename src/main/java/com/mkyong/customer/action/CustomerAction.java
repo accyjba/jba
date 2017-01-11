@@ -38,6 +38,7 @@ public class CustomerAction extends ActionSupport
 
 	//save customer
 	public String addCustomer(Customer customer) throws Exception{
+		try{
 		if(customer!=null){
 			
 		}else{
@@ -62,6 +63,10 @@ public class CustomerAction extends ActionSupport
 		//reload the customer list
 		customerList = null;
 		customerList = session.createQuery("from Customer").list();
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new RuntimeException(e); 
+		}
 		
 		return SUCCESS;
 	
@@ -81,7 +86,8 @@ public class CustomerAction extends ActionSupport
 
 		customerList = session.createQuery("from Customer").list();
 		}catch(Exception e){
-			throw new RuntimeException(e);
+			e.printStackTrace();
+			throw new RuntimeException(e); 
 		}
 		
 		return SUCCESS;
@@ -89,10 +95,16 @@ public class CustomerAction extends ActionSupport
 	}
 	
 	public String deleteCustomer(Customer cust)throws Exception{
-		Session session = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory().openSession();
-		session.beginTransaction();
-		session.delete(cust);
-		session.getTransaction().commit();
+		try{
+			Session session = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory().openSession();
+			session.beginTransaction();
+			session.delete(cust);
+			session.getTransaction().commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			throw new RuntimeException(e); 
+		}
+		
 		return SUCCESS;
 	}
 	
