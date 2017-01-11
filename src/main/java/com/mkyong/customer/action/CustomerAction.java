@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import com.mkyong.customer.model.Customer;
 import com.mkyong.listener.HibernateListener;
@@ -19,11 +20,10 @@ public class CustomerAction extends ActionSupport
 	Customer customer = new Customer();
 	List<Customer> customerList = new ArrayList<Customer>();
 	
-	@Override
 	public String execute() throws Exception {
 		return SUCCESS;
 	}
-	@Override
+
 	public Object getModel() {
 		return customer;
 	}
@@ -37,14 +37,20 @@ public class CustomerAction extends ActionSupport
 	}
 
 	//save customer
-	public String addCustomer() throws Exception{
-		
+	public String addCustomer(Customer customer) throws Exception{
+		if(customer!=null){
+			
+		}else{
+			customer=new Customer();
+			customer.setName(this.customer.getName());
+			customer.setAddress(this.customer.getAddress());
+		}
 		//get hibernate session from the servlet context
-		SessionFactory sessionFactory = 
+		/*SessionFactory sessionFactory = 
 	         (SessionFactory) ServletActionContext.getServletContext()
                      .getAttribute(HibernateListener.KEY_NAME);
-
-		Session session = sessionFactory.openSession();
+*/
+		Session session = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory().openSession();
 
 		//save it
 		customer.setCreatedDate(new Date());
@@ -64,17 +70,31 @@ public class CustomerAction extends ActionSupport
 	//list all customers
 	public String listCustomer() throws Exception{
 		
-		//get hibernate session from the servlet context
+		/*//get hibernate session from the servlet context
 		SessionFactory sessionFactory = 
 	         (SessionFactory) ServletActionContext.getServletContext()
                      .getAttribute(HibernateListener.KEY_NAME);
 
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.openSession();*/
+		try{
+		Session session = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory().openSession();
 
 		customerList = session.createQuery("from Customer").list();
+		}catch(Exception e){
+			e.printStackTrace();
+			return ERROR;
+		}
 		
 		return SUCCESS;
 	
+	}
+	
+	public String deleteCustomer(Customer cust)throws Exception{
+		Session session = new Configuration().configure("/hibernate.cfg.xml").buildSessionFactory().openSession();
+		session.beginTransaction();
+		session.delete(cust);
+		session.getTransaction().commit();
+		return SUCCESS;
 	}
 	
 }
