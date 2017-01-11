@@ -64,7 +64,7 @@ public class CustomerAction extends ActionSupport
 		customerList = null;
 		customerList = session.createQuery("from Customer").list();
 		}catch(Exception e){
-			e.printStackTrace();
+			
 			throw new RuntimeException(e); 
 		}
 		
@@ -86,7 +86,7 @@ public class CustomerAction extends ActionSupport
 
 		customerList = session.createQuery("from Customer").list();
 		}catch(Exception e){
-			e.printStackTrace();
+			
 			throw new RuntimeException(e); 
 		}
 		
@@ -101,7 +101,7 @@ public class CustomerAction extends ActionSupport
 			session.delete(cust);
 			session.getTransaction().commit();
 		}catch(Exception e){
-			e.printStackTrace();
+			
 			throw new RuntimeException(e); 
 		}
 		
