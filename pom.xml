@@ -109,7 +109,11 @@ because we want to be to able to execute mvn sonar:sonar without passing a profi
 		<version>2.7.7</version>
 	</dependency>
 	<!-- Hibernate query library dependecy end -->
-
+<dependency>
+    <groupId>org.kohsuke</groupId>
+    <artifactId>github-api</artifactId>
+    <version>1.22</version>
+</dependency>
 
   </dependencies>
   <build>
