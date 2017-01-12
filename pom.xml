@@ -112,7 +112,7 @@ because we want to be to able to execute mvn sonar:sonar without passing a profi
 <dependency>
     <groupId>org.kohsuke</groupId>
     <artifactId>github-api</artifactId>
-    <version>1.22</version>
+    <version>1.69</version>
 </dependency>
 
   </dependencies>
