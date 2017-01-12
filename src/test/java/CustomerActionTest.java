@@ -21,15 +21,13 @@ public class CustomerActionTest extends TestCase {
 		action.addCustomer(customer);
 		assertNotNull(customer.getCustomerId());
 	}
-
-	@Test
-	public void testDeleteCustomer()throws Exception{
-		action.deleteCustomer(customer);
-		assertNull(customer.getCustomerId());
-	}
 	
+	@Test
 	public void testListCustomer() throws Exception {
 		String result=action.listCustomer();
 		assertEquals(result, "success");
+		
+		action.deleteCustomer(customer);
+		assertNull(customer.getCustomerId());
 	}
 }
