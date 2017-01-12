@@ -20,6 +20,9 @@ public class CustomerActionTest extends TestCase {
 		customer.setAddress("yyyy");
 		action.addCustomer(customer);
 		assertNotNull(customer.getCustomerId());
+		
+		String result=action.deleteCustomer(customer);
+		assertEquals(result, "success");
 	}
 	
 	@Test
@@ -27,7 +30,6 @@ public class CustomerActionTest extends TestCase {
 		String result=action.listCustomer();
 		assertEquals(result, "success");
 		
-		action.deleteCustomer(customer);
-		assertNull(customer.getCustomerId());
+		
 	}
 }
