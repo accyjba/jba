@@ -115,6 +115,12 @@ because we want to be to able to execute mvn sonar:sonar without passing a profi
     <version>1.69</version>
 </dependency>
 
+<dependency>
+    <groupId>org.jenkins-ci.plugins</groupId>
+    <artifactId>plain-credentials</artifactId>
+    <version>1.1</version>
+</dependency>
+
   </dependencies>
   <build>
     <finalName>Struts2Example</finalName>
