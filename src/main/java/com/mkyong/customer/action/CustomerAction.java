@@ -35,7 +35,10 @@ public class CustomerAction extends ActionSupport
 	public void setCustomerList(List<Customer> customerList) {
 		this.customerList = customerList;
 	}
-
+	public String addCustomer() throws Exception{
+		addCustomer(customer);
+		return SUCCESS;
+	}
 	//save customer
 	public String addCustomer(Customer customer) throws Exception{
 		try{
